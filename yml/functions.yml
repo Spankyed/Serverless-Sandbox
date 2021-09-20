@@ -1,0 +1,48 @@
+createPlayer:
+  handler: lambdas/endpoints/createPlayer.handler
+  events:
+    - http:
+        path: create-player/{ID}
+        method: POST
+        cors: true
+getGamePlayers:
+  handler: lambdas/endpoints/getGamePlayers.handler
+  events:
+    - http:
+        path: get-game-players/{game}
+        method: GET
+        cors: true
+getPlayer:
+  handler: lambdas/endpoints/getPlayer.handler
+  events:
+    - http:
+        path: get-player/{ID}
+        method: GET
+        cors: true
+updatePlayerScore:
+  handler: lambdas/endpoints/updatePlayerScore.handler
+  events:
+    - http:
+        path: update-player-score/{ID}
+        method: PUT
+        cors: true        
+websocket-connect:
+  handler: lambdas/websockets/connect.handler
+  events:
+    - websocket:
+        route: $connect
+websocket-disconnect:
+  handler: lambdas/websockets/disconnect.handler
+  events:
+    - websocket:
+        route: $disconnect
+websocket-default:
+  handler: lambdas/websockets/default.handler
+  events:
+    - websocket:
+        route: $default
+websocket-message:
+  handler: lambdas/websockets/message.handler
+  events:
+    - websocket:
+        route: message
